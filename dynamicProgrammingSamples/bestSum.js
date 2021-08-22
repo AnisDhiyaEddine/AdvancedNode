@@ -35,5 +35,19 @@ const bestSumMem = (target, collection, memo = {}) => {
     return shortestCombination;
 }
 
+const bestSumTab = (target, collection) => {
+    const tab = Array(target + 1).fill(null);
+    tab[0] = [];
+    for(let i = 0; i <= target ; i++ ){
+        if(!tab[i]) continue;
+        for(let num of collection){
+           const combination = tab[i + num] ? tab[i+num] : [...tab[i], num];
+           if(!tab[i + num] || combination.length < tab[i + num].length) tab[i + num] = combination;
+        }
+    }
+    return tab[target];
+}
 
-console.log(bestSumMem(100, [1,2,5,25]))  // ex: [25, 25, 25, 25]
+
+//console.log(bestSumMem(100, [1,2,5,25]))  // ex: [25, 25, 25, 25]
+console.log(bestSumTab(100, [1,2,5, 25]))  // ex: [25, 25, 25, 25]
