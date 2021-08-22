@@ -28,9 +28,31 @@ const canConstructMem = (target, wordBank, memo = {}) => {
     return false;
 }
 
-console.log(canConstruct("abcdef", ["ab", "abc", "cd", "def", "abcd"])); // true
+const canConstructTab = (target, wordBank) => {
+    const tab = Array(target.length + 1).fill(false);
+    tab[0] = true;
+    for(let i = 0; i <= target.length; i++) {
+        if(! tab[i]) continue;
+        for(let word of wordBank) {
+            const reminder = target.slice(i, i + word.length);
+            if(reminder === word) {
+                tab[i + word.length] = true;
+            } 
+        }
+    }
+    return tab[target.length];
+}
+
+/* console.log(canConstruct("abcdef", ["ab", "abc", "cd", "def", "abcd"])); // true
 console.log(canConstruct("ab", ["ab", "abc", "abcd"])); // true
 console.log(canConstructMem("eeeeeeeeeeeeeeeeeeeeeeeeeeeef",
  [
      "e", "ee", "eee", "eeee", "eeeee", "eeeeee", "eeeeeee", "eeeeeeee", "eeeeeeeee", "eeeeeeeeee"
-])); // false
+])); // false */
+
+console.log(canConstructTab("abcdef", ["ab", "abc", "cd", "def", "abcd"])); // true
+console.log(canConstructTab("ab", ["ab", "abc", "abcd"])); // true
+console.log(canConstructTab("eeeeeeeeeeeeeeeeeeeeeeeeeeeef",
+ [
+     "e", "ee", "eee", "eeee", "eeeee", "eeeeee", "eeeeeee", "eeeeeeee", "eeeeeeeee", "eeeeeeeeee"
+])); // false 
