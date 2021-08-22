@@ -13,5 +13,15 @@ const fibMem = (n, memo = {}) => {
     return memo[n];
 }
 
+const fibTab = (n) => {
+    let tab = Array(n+1).fill(0);
+    tab[1] = 1;
+    for(let i=2; i <= n ; i++){
+        tab[i] = tab[i-1] + tab[i-2];
+    }
+    return tab[n];
+}
 
-console.log(fibMem(50));
+//console.log(fib(50));
+console.log("Fibonacci memoized : " + fibTab(50));
+console.log("Fibonacci tabulated : " + fibTab(50));
