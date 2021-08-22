@@ -27,10 +27,10 @@ const canSumMem = (target, collection, memo = {}) => {
 const canSumTab = (target, collection) => {
     const tab = Array(target + 1).fill(false);
     tab[0] = true;
-    for(let num of collection){
-        tab[num] = true;
-        for(let i = num; i <= target; i+=num){
-            tab[i] = true;
+    for(let i = 0; i <= target; i++){
+        if(!tab[i]) continue;
+        for(let num of collection){
+            tab[i + num] = true;
         }
     }
     return tab[target];
@@ -48,5 +48,5 @@ console.log(canSumMem(300, [7, 14])) // false  */
 
 console.log(canSumTab(5, [1, 2, 3, 4, 5])) // true
 console.log(canSumTab(7, [2, 4])) // false
-console.log(canSumTab(8, [2, 3, 5])) // true
+console.log(canSumTab(8, [3, 5])) // true
 console.log(canSumTab(300, [7, 14])) // false 

@@ -32,6 +32,21 @@ const howSumMem = (target, collection, memo = {}) => {
     return null;
 }
 
-console.log(howSum(7, [2, 3])); // [3, 2, 2]
+const howSumTab = (target, collection) => {
+    const tab = Array(target + 1).fill(null).map( el => Array().fill([]));
+    for(let num of collection) {
+        for(let i=0; i<=target; i+=num) {
+            tab[i].push()
+        } 
+    }
+   
+    return tab[target];
+}
+
+/* console.log(howSum(7, [2, 3])); // [3, 2, 2]
 console.log(howSum(7, [2, 4])); // null
-console.log(howSumMem(300, [7, 14])); // null
+console.log(howSumMem(300, [7, 14])); // null */
+
+console.log(howSumTab(7, [2, 3])); // [3, 2, 2]
+/* console.log(howSumTab(7, [2, 4])); // null
+console.log(howSumTab(300, [7, 14])); // null */
