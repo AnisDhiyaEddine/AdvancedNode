@@ -33,13 +33,15 @@ const howSumMem = (target, collection, memo = {}) => {
 }
 
 const howSumTab = (target, collection) => {
-    const tab = Array(target + 1).fill(null).map( el => Array().fill([]));
-    for(let num of collection) {
-        for(let i=0; i<=target; i+=num) {
-            tab[i].push()
-        } 
+    const tab = Array(target + 1).fill(null);
+    tab[0]= [];
+    for(let i= 0 ; i <= target ; i++) {
+        for(let num of collection){
+            if(tab[i]){
+                tab[i+num] = tab[i].concat(num);
+            }
+        }
     }
-   
     return tab[target];
 }
 
@@ -48,5 +50,5 @@ console.log(howSum(7, [2, 4])); // null
 console.log(howSumMem(300, [7, 14])); // null */
 
 console.log(howSumTab(7, [2, 3])); // [3, 2, 2]
-/* console.log(howSumTab(7, [2, 4])); // null
-console.log(howSumTab(300, [7, 14])); // null */
+console.log(howSumTab(7, [2, 4])); // null
+console.log(howSumTab(300, [7, 14])); // null
